@@ -7,401 +7,367 @@
 <link rel="icon" href="assets/logo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:ital@1&family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500;1,9..144,600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#0A0910;
-    --panel:#170F24;
-    --panel-2:#1E1330;
-    --cream:#FBF3E4;
-    --gold:#FFC94A;
-    --ember:#FF4D3D;
-    --pink:#FF2E93;
-    --violet:#8C5CFF;
-    --lime:#C8FF4D;
-    --muted:rgba(251,243,228,0.64);
-    --hair:rgba(255,201,74,0.22);
+    --ink:#070708;
+    --panel:#111114;
+    --panel-2:#17171C;
+    --paper:#F7F3EA;
+    --yellow:#F4FF3D;
+    --pink:#FF2E8C;
+    --violet:#7B5CFF;
+    --cyan:#3DEBFF;
+    --muted:rgba(247,243,234,0.58);
+    --hair:rgba(244,255,61,0.18);
   }
 
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
   body{
     background:var(--ink);
-    color:var(--cream);
-    font-family:'Inter', sans-serif;
+    color:var(--paper);
+    font-family:'Space Grotesk', sans-serif;
     overflow-x:hidden;
     -webkit-font-smoothing:antialiased;
-    background-image:
-      radial-gradient(circle at 14% 8%, rgba(140,92,255,0.25), transparent 42%),
-      radial-gradient(circle at 88% 4%, rgba(255,45,147,0.22), transparent 40%),
-      radial-gradient(circle at 50% 100%, rgba(255,201,74,0.14), transparent 45%);
-    background-attachment:fixed;
   }
-  ::selection{background:var(--ember); color:var(--ink);}
+  ::selection{background:var(--pink); color:#000;}
   a{color:inherit; text-decoration:none;}
   img{max-width:100%; display:block;}
-  .wrap{ max-width:1180px; margin:0 auto; padding:0 clamp(20px,5vw,64px); }
+  .wrap{ max-width:1200px; margin:0 auto; padding:0 clamp(20px,5vw,64px); }
 
-  .eyebrow{
-    font-weight:700; font-size:12.5px; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold);
-  }
-  h1,h2,h3{ font-family:'Bricolage Grotesque', sans-serif; font-weight:800; line-height:0.98; letter-spacing:-0.01em; }
+  .eyebrow{ font-weight:700; font-size:12.5px; letter-spacing:0.24em; text-transform:uppercase; color:var(--yellow); }
+  h1,h2,h3{ font-family:'Bricolage Grotesque', sans-serif; font-weight:800; line-height:0.96; letter-spacing:-0.01em; }
   .accent-serif{ font-family:'Fraunces', serif; font-style:italic; font-weight:500; letter-spacing:0; }
 
   @keyframes float{ 0%,100%{ transform:translateY(0) rotate(var(--rot,0deg)); } 50%{ transform:translateY(-10px) rotate(var(--rot,0deg)); } }
-  @keyframes floatSlow{ 0%,100%{ transform:translateY(0) rotate(var(--rot,0deg)); } 50%{ transform:translateY(-16px) rotate(calc(var(--rot,0deg) + 3deg)); } }
   @keyframes spin{ to{ transform:rotate(360deg); } }
-  @keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:0.35;} }
-  @keyframes popIn{ from{ opacity:0; transform:translateY(18px) scale(0.96); } to{ opacity:1; transform:translateY(0) scale(1); } }
+  @keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+  @keyframes bounce{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(8px); } }
+  @keyframes scroll{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+  @keyframes marqueeScroll{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
   @media (prefers-reduced-motion:reduce){ *{ animation:none !important; } }
 
-  /* ---------- STICKERS ---------- */
+  /* ---------- STICKER ---------- */
   .sticker{
-    position:absolute;
-    display:inline-flex;
-    align-items:center;
-    gap:6px;
-    padding:10px 16px;
-    border-radius:100px;
-    font-family:'Bricolage Grotesque';
-    font-weight:800;
-    font-size:12.5px;
-    letter-spacing:0.06em;
-    text-transform:uppercase;
-    border:2px dashed rgba(10,9,16,0.35);
-    box-shadow:0 10px 26px -8px rgba(0,0,0,0.5);
-    animation:float 5s ease-in-out infinite;
-    z-index:5;
-    white-space:nowrap;
+    display:inline-flex; align-items:center; gap:6px; padding:9px 16px; border-radius:100px;
+    font-family:'Bricolage Grotesque'; font-weight:800; font-size:12px; letter-spacing:0.05em; text-transform:uppercase;
+    box-shadow:0 10px 24px -8px rgba(0,0,0,0.5);
   }
-  .sticker.gold{ background:var(--gold); color:var(--ink); }
-  .sticker.pink{ background:var(--pink); color:var(--cream); }
-  .sticker.lime{ background:var(--lime); color:var(--ink); }
-  .sticker.violet{ background:var(--violet); color:var(--cream); }
+  .sticker.yellow{ background:var(--yellow); color:#000; }
+  .sticker.pink{ background:var(--pink); color:#fff; }
+  .sticker.violet{ background:var(--violet); color:#fff; }
 
   /* ---------- NAV ---------- */
   header{
-    position:fixed; top:0; left:0; right:0; z-index:50;
+    position:fixed; top:0; left:0; right:0; z-index:60;
     display:flex; align-items:center; justify-content:space-between;
     padding:16px clamp(20px,5vw,64px);
-    background:linear-gradient(to bottom, rgba(10,9,16,0.9), rgba(10,9,16,0));
-    backdrop-filter:blur(3px);
+    background:linear-gradient(to bottom, rgba(7,7,8,0.94), rgba(7,7,8,0));
+    backdrop-filter:blur(4px);
   }
-  .logo-mark{ display:flex; align-items:center; gap:10px; }
-  .logo-mark img{ height:38px; width:58px; border-radius:10px; object-fit:cover; }
-  .logo-mark span{ font-family:'Bricolage Grotesque'; font-weight:800; font-size:17px; }
-  .nav-links{ display:flex; align-items:center; gap:24px; font-size:13.5px; font-weight:600; color:var(--muted); }
-  .nav-links a:hover{ color:var(--gold); }
+  .logo-mark{ display:flex; align-items:center; gap:10px; 
+    animation: bounce 1.8s ease-in-out infinite;
+  }
+  .logo-mark img{ height:46px; width:76px; border-radius:9px; object-fit:cover; }
+  .logo-mark span{ font-family:'Bricolage Grotesque'; font-weight:800; font-size:16.5px; }
+  .nav-links{ display:flex; align-items:center; gap:26px; font-size:13px; font-weight:600; color:var(--muted); }
+  .nav-links a:hover{ color:var(--yellow); }
   .nav-cta{
-    padding:10px 20px; border-radius:100px;
-    background:linear-gradient(90deg, var(--pink), var(--ember));
-    color:var(--cream) !important; font-weight:700;
-    transition:transform .2s ease, box-shadow .2s ease;
-    box-shadow:0 6px 20px -6px rgba(255,45,147,0.6);
+    padding:10px 20px; border-radius:100px; border:1.5px dashed var(--yellow);
+    color:var(--yellow) !important; font-weight:700;
+    transition:background .2s ease, color .2s ease;
   }
-  .nav-cta:hover{ transform:translateY(-2px) scale(1.03); }
-  @media (max-width:720px){ .nav-links span.hide-mobile{display:none;} }
+  .nav-cta:hover{ background:var(--yellow); color:#000 !important; }
+  @media (max-width:800px){ .nav-links .hide-mobile{display:none;} }
 
   /* ---------- HERO ---------- */
-  .hero{ position:relative; min-height:100vh; display:flex; flex-direction:column; justify-content:center; padding:150px 0 90px; overflow:hidden; }
-  .rays{
-    position:absolute; inset:-20%; z-index:0;
-    background:repeating-conic-gradient(from 0deg at 72% 22%, rgba(255,201,74,0.14) 0deg 3deg, transparent 3deg 9deg);
-    animation:spin 70s linear infinite;
-    -webkit-mask-image:radial-gradient(circle at 72% 22%, black 0%, black 35%, transparent 68%);
-            mask-image:radial-gradient(circle at 72% 22%, black 0%, black 35%, transparent 68%);
+  .hero{ position:relative; min-height:100vh; display:flex; flex-direction:column; justify-content:center; padding:130px 0 80px; overflow:hidden; }
+  .spotlight{
+    position:absolute; inset:0; z-index:0;
+    background:
+      radial-gradient(ellipse 60% 45% at 20% 0%, rgba(123,92,255,0.28), transparent 60%),
+      radial-gradient(ellipse 60% 45% at 80% 0%, rgba(255,46,140,0.24), transparent 60%),
+      radial-gradient(ellipse 50% 40% at 50% 100%, rgba(244,255,61,0.10), transparent 60%);
   }
-  .confetti{ position:absolute; inset:0; z-index:0; pointer-events:none; }
-  .confetti i{ position:absolute; display:block; border-radius:3px; opacity:0.85; animation:floatSlow 6s ease-in-out infinite; }
-
+  .grain{
+    position:absolute; inset:0; z-index:1; opacity:0.05; pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
   .hero-inner{ position:relative; z-index:3; }
 
-  .logo-hero{ display:flex; justify-content:center; margin-bottom:8px; position:relative; }
-  .logo-hero-badge{
-    position:relative;
-    width:172px; height:132px;
-    border-radius:28px;
-    overflow:hidden;
-    border:3px solid var(--gold);
-    box-shadow:0 0 0 8px rgba(255,201,74,0.12), 0 25px 60px -15px rgba(255,45,147,0.45);
-    animation:popIn .7s cubic-bezier(.2,.9,.3,1.3) both;
+  .live-tag{
+    display:inline-flex; align-items:center; gap:8px; padding:9px 18px; border-radius:100px;
+    background:#E8382C; color:#fff; font-weight:800; font-size:12px; letter-spacing:0.06em; text-transform:uppercase;
+    margin-bottom:26px;
   }
-  .logo-hero-badge img{ width:100%; height:100%; object-fit:cover; }
-  .logo-hero .sticker{ top:-14px; right:calc(50% - 148px); animation-delay:.3s; }
+  .live-tag::before{ content:"📍"; font-size:12px; }
 
-  .hero-flag{ display:flex; align-items:center; justify-content:center; gap:10px; margin:26px 0 18px; }
-  .hero-flag .bars{ display:flex; gap:3px; }
-  .hero-flag .bar{ width:5px; height:16px; background:#0B7A3E; }
-  .hero-flag .bar:nth-child(2){ background:var(--cream); }
-  .hero-flag .bar:nth-child(3){ background:#0B7A3E; }
+  /* ---------- MAMG BIG LOCKUP ---------- */
+  .mamg-lockup{ position:relative; text-align:center; margin-bottom:34px; }
+  .mamg-big{
+    font-family:'Bricolage Grotesque'; font-weight:800;
+    font-size:clamp(58px, 15vw, 200px);
+    line-height:0.82; letter-spacing:-0.02em;
+    color:var(--paper);
+    text-shadow:
+      2px 2px 0 rgba(244,255,61,0.9),
+      4px 4px 0 rgba(255,46,140,0.5),
+      6px 6px 18px rgba(0,0,0,0.6);
+    margin:0 auto;
+    animation: bounce 1.8s ease-in-out infinite;
+  }
+  .mamg-presents{
+    display:block; font-family:'Space Grotesk'; font-weight:600; font-size:clamp(11px,1.4vw,14px);
+    letter-spacing:0.3em; text-transform:uppercase; color:var(--muted); margin-bottom:14px;
+  }
+  .ribbon{
+    display:inline-flex; align-items:center; gap:8px;
+    background:#E8382C; color:#fff;
+    padding:12px 28px; margin-top:18px;
+    font-family:'Bricolage Grotesque'; font-weight:800; font-size:clamp(14px,2.2vw,22px);
+    letter-spacing:0.05em; text-transform:uppercase;
+    transform:rotate(-2.5deg);
+    box-shadow:0 14px 30px -10px rgba(232,56,44,0.6);
+    position:relative;
+  }
+  .ribbon::before{ content:"📍"; font-size:0.85em; }
+  .ribbon::after{
+    content:""; position:absolute; top:0; bottom:0; width:0; height:0;
+    border-top:24px solid transparent; border-bottom:24px solid transparent;
+  }
+  @media (max-width:640px){ .mamg-big{ font-size:clamp(46px,17vw,90px); } }
 
-  .hero h1{ font-size:clamp(42px, 9vw, 108px); text-align:center; }
-  .hero h1 .pop{
-    background:linear-gradient(90deg, var(--gold), var(--pink) 55%, var(--violet));
+  .hero h1{ font-size:clamp(52px, 10.5vw, 148px); }
+  .hero h1 .l1{ color:var(--paper); display:block; }
+  .hero h1 .l2{
+    display:block;
+    background:linear-gradient(90deg, var(--yellow), var(--pink) 45%, var(--violet) 75%, var(--cyan));
     -webkit-background-clip:text; background-clip:text; color:transparent;
   }
 
-  .hero-sub{ max-width:540px; margin:26px auto 0; font-size:16.5px; line-height:1.65; color:var(--muted); text-align:center; }
+  .hero-sub{ max-width:560px; margin-top:26px; font-size:16.5px; line-height:1.7; color:var(--muted); }
 
-  .hero-meta{ display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:16px; margin-top:40px; }
-  .date-badge{
-    display:flex; flex-direction:column; padding:14px 22px; border-radius:16px;
-    background:var(--panel-2); border:1px solid var(--hair);
-  }
-  .date-badge .d1{ font-size:11px; letter-spacing:0.18em; color:var(--gold); font-weight:700; }
-  .date-badge .d2{ font-family:'Bricolage Grotesque'; font-weight:800; font-size:20px; margin-top:2px; }
+  .hero-meta{ display:flex; flex-wrap:wrap; align-items:center; gap:18px; margin-top:46px; }
 
-  .btn-ig{
-    display:inline-flex; align-items:center; gap:10px; padding:17px 28px; border-radius:100px;
-    background:linear-gradient(90deg, var(--ember), var(--pink));
-    color:var(--cream); font-weight:700; font-size:14.5px; letter-spacing:0.01em;
-    box-shadow:0 10px 34px -8px rgba(255,45,147,0.6);
+  .ticket-btn{
+    position:relative;
+    display:inline-flex; align-items:center; gap:12px;
+    padding:18px 30px 18px 26px;
+    background:var(--yellow); color:#000;
+    font-family:'Bricolage Grotesque'; font-weight:800; font-size:15px; letter-spacing:0.01em;
+    border-radius:12px;
+    box-shadow:0 14px 34px -10px rgba(244,255,61,0.5);
     transition:transform .25s ease, box-shadow .25s ease;
   }
-  .btn-ig:hover{ transform:translateY(-3px) scale(1.02); box-shadow:0 16px 40px -8px rgba(255,45,147,0.8); }
-  .btn-ig svg{ width:17px; height:17px; }
+  .ticket-btn::before{
+    content:""; position:absolute; left:-1px; top:50%; transform:translate(-50%,-50%);
+    width:22px; height:22px; border-radius:50%; background:var(--ink);
+  }
+  .ticket-btn::after{
+    content:""; position:absolute; right:-1px; top:50%; transform:translate(50%,-50%);
+    width:22px; height:22px; border-radius:50%; background:var(--ink);
+  }
+  .ticket-btn:hover{ transform:translateY(-3px) scale(1.02); box-shadow:0 20px 44px -10px rgba(244,255,61,0.7); }
+  .ticket-btn .price{ padding-left:14px; margin-left:2px; border-left:2px dashed rgba(0,0,0,0.35); font-weight:700; }
 
-  .hero-loc{ margin-top:56px; font-size:12.5px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); display:flex; align-items:center; justify-content:center; gap:10px; }
-  .hero-loc::before, .hero-loc::after{ content:""; width:22px; height:1px; background:var(--hair); }
+  .ig-link{
+    display:inline-flex; align-items:center; gap:10px; padding:16px 4px; font-weight:700; font-size:14px; color:var(--paper);
+  animation:bounce 1.8s ease-in-out infinite; }
+  
+  .ig-link svg{ width:19px; height:19px; }
+  .ig-link:hover{ color:var(--pink); }
 
-  .side-sticker{ display:none; }
-  @media (min-width:900px){
-    .side-sticker{ display:inline-flex; }
-    .s1{ top:22%; left:6%; --rot:-8deg; }
-    .s2{ top:60%; right:6%; --rot:6deg; animation-delay:1s; }
-    .s3{ top:14%; right:12%; --rot:10deg; animation-delay:2s; }
+  .date-strip{ display:flex; flex-wrap:wrap; gap:28px; margin-top:56px; }
+  .date-strip .item .k{ font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--muted); }
+  .date-strip .item .v{ font-family:'Bricolage Grotesque'; font-weight:800; font-size:18px; margin-top:4px; }
+
+  .scroll-cue{
+    position:absolute; bottom:36px; left:50%; transform:translateX(-50%);
+    display:flex; flex-direction:column; align-items:center; gap:8px; z-index:3;
+    color:var(--muted); font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
+  }
+  .scroll-cue svg{ width:16px; height:16px; animation:bounce 1.8s ease-in-out infinite; }
+
+  /* ---------- GHOST MARQUEE ---------- */
+  .ghost-marquee{ overflow:hidden; white-space:nowrap; padding:6px 0; border-top:1px solid var(--hair); border-bottom:1px solid var(--hair); }
+  .ghost-track{ display:inline-flex; animation:marqueeScroll 26s linear infinite; }
+  .ghost-track span{
+    font-family:'Bricolage Grotesque'; font-weight:800; font-size:clamp(38px,7vw,84px);
+    padding:0 22px; text-transform:uppercase;
+    color:transparent; -webkit-text-stroke:1.5px rgba(244,255,61,0.35);
+    letter-spacing:0.01em;
   }
 
-  /* ---------- MARQUEE ---------- */
-  .marquee{ border-top:2px solid var(--gold); border-bottom:2px solid var(--gold); background:linear-gradient(90deg, var(--pink), var(--violet)); padding:14px 0; overflow:hidden; white-space:nowrap; }
+  /* ---------- COLOR MARQUEE ---------- */
+  .marquee{ border-top:2px solid var(--ink); border-bottom:2px solid var(--ink); background:linear-gradient(90deg, var(--pink), var(--violet)); padding:14px 0; overflow:hidden; white-space:nowrap; }
   .marquee-track{ display:inline-flex; animation:scroll 30s linear infinite; }
-  .marquee span{ font-family:'Bricolage Grotesque'; font-weight:800; font-size:15px; letter-spacing:0.06em; text-transform:uppercase; padding:0 26px; color:var(--ink); display:inline-flex; align-items:center; gap:26px; }
-  .marquee span em{ color:var(--cream); font-style:normal; }
-  @keyframes scroll{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+  .marquee span{ font-family:'Bricolage Grotesque'; font-weight:800; font-size:15px; letter-spacing:0.06em; text-transform:uppercase; padding:0 26px; color:#fff; display:inline-flex; align-items:center; gap:26px; }
+  .marquee span em{ color:var(--yellow); font-style:normal; }
 
   /* ---------- SECTION shared ---------- */
-  section{ position:relative; padding:120px 0; }
-  .section-head{ max-width:640px; margin-bottom:64px; position:relative; }
+  section{ position:relative; padding:110px 0; }
+  .section-head{ max-width:640px; margin-bottom:56px; }
   .section-head h2{ font-size:clamp(30px,4.6vw,50px); margin-top:14px; }
-  .section-head p{ margin-top:18px; color:var(--muted); font-size:16px; line-height:1.7; max-width:52ch; }
+  .section-head p{ margin-top:16px; color:var(--muted); font-size:16px; line-height:1.7; max-width:52ch; }
 
   /* ---------- ABOUT ---------- */
-  .about-grid{ display:grid; grid-template-columns:1.1fr 0.9fr; gap:64px; align-items:center; }
+  .about-grid{ display:grid; grid-template-columns:0.95fr 1.05fr; gap:60px; align-items:center; }
   .about-copy p{ color:var(--muted); font-size:16.5px; line-height:1.75; margin-bottom:18px; }
-  .about-copy strong{ color:var(--gold); font-weight:700; }
-  .video-frame{ position:relative; border-radius:26px; overflow:hidden; border:3px solid var(--violet); aspect-ratio:4/5; background:#000; box-shadow:0 30px 60px -20px rgba(140,92,255,0.4); }
-  .video-frame video{ width:100%; height:100%; object-fit:cover; }
-  .video-tag{ position:absolute; bottom:16px; left:16px; display:flex; align-items:center; gap:8px; padding:8px 14px; border-radius:100px; background:rgba(10,9,16,0.75); backdrop-filter:blur(6px); font-size:11.5px; letter-spacing:0.12em; text-transform:uppercase; font-weight:700; }
-  .rec-dot{ width:7px; height:7px; border-radius:50%; background:var(--ember); animation:pulse 1.6s ease-in-out infinite; }
-  @media (max-width:860px){ .about-grid{ grid-template-columns:1fr; } .video-frame{ aspect-ratio:16/10; order:-1; } }
+  .about-copy strong{ color:var(--yellow); font-weight:700; }
 
-  /* ---------- CREATOR / COSIGN ---------- */
-  .cosign{ text-align:center; position:relative; }
-  .cosign .section-head{ margin-left:auto; margin-right:auto; text-align:center; }
+  .collage{ position:relative; height:460px; }
+  .collage figure{ position:absolute; border-radius:16px; overflow:hidden; box-shadow:0 25px 50px -18px rgba(0,0,0,0.6); }
+  .collage figure img, .collage figure video{ width:100%; height:100%; object-fit:cover; display:block; }
+  .c1{ width:52%; top:0; left:0; aspect-ratio:4/5; border:3px solid var(--yellow); transform:rotate(-4deg); z-index:2; }
+  .c2{ width:48%; top:6%; right:0; aspect-ratio:1/1; border:3px solid var(--pink); transform:rotate(5deg); z-index:1; }
+  .c3{ width:46%; bottom:0; left:12%; aspect-ratio:16/10; border:3px solid var(--violet); transform:rotate(3deg); z-index:3; }
+  @media (max-width:900px){ .about-grid{ grid-template-columns:1fr; } .collage{ height:380px; margin-top:20px; } }
+  @media (max-width:520px){ .collage{ height:320px; } }
+
+  /* ---------- STATS ---------- */
+  .stats{ background:var(--panel); border-top:1px solid var(--hair); border-bottom:1px solid var(--hair); padding:70px 0; }
+  .stats-row{ display:grid; grid-template-columns:repeat(3,1fr); }
+  .stat{ text-align:center; padding:0 20px; border-right:1px dashed var(--hair); }
+  .stat:last-child{ border-right:none; }
+  .stat .num{ font-family:'Bricolage Grotesque'; font-weight:800; font-size:clamp(40px,6vw,64px); color:var(--yellow); line-height:1; }
+  .stat .lbl{ margin-top:10px; font-size:12.5px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); }
+  @media (max-width:640px){ .stats-row{ grid-template-columns:1fr; gap:32px; } .stat{ border-right:none; border-bottom:1px dashed var(--hair); padding-bottom:28px; } .stat:last-child{ border-bottom:none; padding-bottom:0; } }
+
+  /* ---------- EXPERIENCE GRID ---------- */
+  .exp-item{ display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center; padding:56px 0; border-bottom:1px solid var(--hair); }
+  .exp-item:first-child{ padding-top:0; }
+  .exp-item:nth-child(even) .exp-media{ order:2; }
+  .exp-media{ border-radius:20px; overflow:hidden; aspect-ratio:5/4; position:relative; }
+  .exp-media img{ width:100%; height:100%; object-fit:cover; }
+  .exp-media.tile{ display:flex; align-items:center; justify-content:center; }
+  .exp-media.tile svg{ width:64px; height:64px; opacity:0.9; }
+  .exp-num{ font-family:'Bricolage Grotesque'; font-weight:800; font-size:13px; color:var(--muted); letter-spacing:0.1em; }
+  .exp-title{ font-size:clamp(26px,3.4vw,38px); margin-top:10px; }
+  .exp-list{ margin-top:20px; display:flex; flex-direction:column; gap:10px; }
+  .exp-list li{ list-style:none; display:flex; align-items:baseline; gap:10px; color:var(--muted); font-size:15px; }
+  .exp-list li::before{ content:"—"; color:var(--yellow); font-weight:700; }
+  @media (max-width:800px){ .exp-item{ grid-template-columns:1fr; gap:24px; } .exp-item:nth-child(even) .exp-media{ order:0; } }
+
+  /* ---------- COSIGN ---------- */
+  .cosign{ text-align:center; }
+  .cosign .section-head{ margin:0 auto 44px; text-align:center; }
   .phone-frame{
-    position:relative;
-    width:min(86vw, 320px);
-    aspect-ratio:9/16;
-    margin:0 auto;
-    border-radius:34px;
-    padding:10px;
+    position:relative; width:min(84vw, 300px); aspect-ratio:9/16; margin:0 auto;
+    border-radius:32px; padding:9px;
     background:linear-gradient(160deg, var(--pink), var(--violet));
-    box-shadow:0 40px 90px -25px rgba(255,45,147,0.45);
+    box-shadow:0 40px 90px -25px rgba(255,46,140,0.4);
   }
-  .phone-frame .screen{
-    position:relative;
-    width:100%; height:100%;
-    border-radius:26px;
-    overflow:hidden;
-    background:#000;
-    border:2px solid rgba(251,243,228,0.15);
-  }
+  .phone-frame .screen{ position:relative; width:100%; height:100%; border-radius:24px; overflow:hidden; background:#000; border:2px solid rgba(247,243,234,0.15); }
   .phone-frame video{ width:100%; height:100%; object-fit:cover; }
-  .phone-frame .notch{
-    position:absolute; top:8px; left:50%; transform:translateX(-50%);
-    width:70px; height:6px; border-radius:100px; background:rgba(251,243,228,0.4);
-    z-index:4;
-  }
-  .cosign .sticker{ top:-6px; left:calc(50% - 170px); --rot:-9deg; }
-  @media (max-width:640px){ .cosign .sticker{ position:static; display:inline-flex; margin-bottom:18px; transform:none; } }
+  .phone-frame .notch{ position:absolute; top:8px; left:50%; transform:translateX(-50%); width:64px; height:5px; border-radius:100px; background:rgba(247,243,234,0.4); z-index:4; }
+  .cosign .sticker{ margin-bottom:18px; }
 
-  /* ---------- BANDS ---------- */
-  .bands{ background:var(--panel); }
-  .band-list{ border-top:1px solid var(--hair); }
-  .band-row{ display:grid; grid-template-columns:74px 1fr 1.3fr; gap:26px; align-items:start; padding:32px 0; border-bottom:1px solid var(--hair); transition:background .25s ease; }
-  .band-row:hover{ background:rgba(255,201,74,0.06); }
-  .band-num{
-    width:52px; height:52px; border-radius:50%; display:flex; align-items:center; justify-content:center;
-    font-family:'Bricolage Grotesque'; font-weight:800; font-size:15px; color:var(--ink);
+  /* ---------- TICKET CTA ---------- */
+  .ticket-cta{
+    text-align:center;
+    background:linear-gradient(160deg, var(--panel-2), var(--ink) 65%);
+    border-top:1px solid var(--hair); border-bottom:1px solid var(--hair);
   }
-  .band-row:nth-child(5n+1) .band-num{ background:var(--gold); }
-  .band-row:nth-child(5n+2) .band-num{ background:var(--pink); color:var(--cream); }
-  .band-row:nth-child(5n+3) .band-num{ background:var(--lime); }
-  .band-row:nth-child(5n+4) .band-num{ background:var(--violet); color:var(--cream); }
-  .band-row:nth-child(5n+5) .band-num{ background:var(--ember); color:var(--cream); }
-  .band-name{ font-family:'Bricolage Grotesque'; font-weight:800; font-size:clamp(20px,2.6vw,28px); }
-  .band-desc{ color:var(--muted); font-size:15.5px; line-height:1.65; padding-top:5px; }
-  @media (max-width:720px){ .band-row{ grid-template-columns:52px 1fr; } .band-desc{ grid-column:2; } }
-
-  /* ---------- POSTER SHOWCASE ---------- */
-  .poster-section{ padding-top:130px; padding-bottom:150px; position:relative; }
-  .poster-shell{
-    position:relative; max-width:460px; margin:0 auto; border-radius:20px; overflow:hidden;
-    border:3px solid var(--gold);
-    box-shadow:0 40px 90px -30px rgba(255,45,147,0.4);
-    transform:rotate(-1.6deg);
-  }
-  .poster-shell img{ width:100%; }
-  .poster-caption{ text-align:center; margin-top:26px; font-size:13px; color:var(--muted); letter-spacing:0.06em; text-transform:uppercase; }
-  .poster-section .sticker{ top:0; left:calc(50% - 240px); --rot:-10deg; }
-  @media (max-width:640px){ .poster-section .sticker{ position:static; display:inline-flex; margin-bottom:20px; transform:none; } .poster-section .wrap > .sticker{ display:none; } }
+  .ticket-cta h2{ font-size:clamp(34px,6vw,66px); }
+  .ticket-cta h2 .accent-serif{ background:linear-gradient(90deg, var(--yellow), var(--pink)); -webkit-background-clip:text; background-clip:text; color:transparent; font-size:1em; }
+  .ticket-cta p{ max-width:46ch; margin:20px auto 0; color:var(--muted); font-size:16px; line-height:1.7; }
+  .ticket-cta .ticket-btn{ margin-top:38px; font-size:17px; padding:22px 38px 22px 32px; }
 
   /* ---------- COMMUNITY ---------- */
-  .community{ display:grid; grid-template-columns:1fr 0.8fr; gap:56px; align-items:center; }
-  .community-photo{ position:relative; border-radius:22px; overflow:hidden; border:3px solid var(--pink); }
+  .community{ display:grid; grid-template-columns:1fr 0.82fr; gap:56px; align-items:center; }
+  .community-photo{ border-radius:20px; overflow:hidden; border:3px solid var(--violet); }
   .community-copy h2{ font-size:clamp(30px,4.4vw,48px); }
-  .community-copy p{ margin-top:18px; color:var(--muted); font-size:16px; line-height:1.7; }
-  .ig-block{ margin-top:34px; display:flex; align-items:center; gap:18px; padding:18px; border-radius:18px; background:linear-gradient(120deg, var(--panel-2), var(--panel)); border:1px solid var(--hair); }
-  .ig-block img{ width:74px; height:74px; border-radius:12px; }
-  .ig-block .handle{ font-family:'Bricolage Grotesque'; font-weight:800; font-size:17px; color:var(--gold); }
-  .ig-block .scan{ font-size:12.5px; color:var(--muted); margin-top:4px; }
+  .community-copy p{ margin-top:16px; color:var(--muted); font-size:16px; line-height:1.7; }
+  .ig-block{ margin-top:30px; display:flex; align-items:center; gap:18px; padding:18px; border-radius:16px; background:var(--panel); border:1px solid var(--hair); }
+  .ig-block img{ width:70px; height:70px; border-radius:10px; }
+  .ig-block .handle{ font-family:'Bricolage Grotesque'; font-weight:800; font-size:16px; color:var(--yellow); }
+  .ig-block .scan{ font-size:12px; color:var(--muted); margin-top:3px; }
   @media (max-width:860px){ .community{ grid-template-columns:1fr; } }
-
-  /* ---------- CLOSING CTA ---------- */
-  .closing{ text-align:center; padding-top:140px; padding-bottom:110px; position:relative; }
-  .closing h2{ font-size:clamp(38px,7vw,84px); letter-spacing:-0.01em; }
-  .closing h2 .accent-serif{ font-size:0.9em; background:linear-gradient(90deg, var(--gold), var(--pink)); -webkit-background-clip:text; background-clip:text; color:transparent; }
-  .closing .hero-sub{ margin:26px auto 0; text-align:center; }
-  .closing .btn-ig{ margin-top:40px; }
-  .tags{ margin-top:56px; display:flex; flex-wrap:wrap; justify-content:center; gap:10px; }
-  .tags span{ font-size:12px; font-weight:700; color:var(--ink); background:var(--lime); padding:7px 14px; border-radius:100px; }
-  .tags span:nth-child(2n){ background:var(--gold); }
-  .tags span:nth-child(3n){ background:var(--pink); color:var(--cream); }
 
   /* ---------- FOOTER ---------- */
   footer{
-    position:relative;
-    margin-top:20px;
-    padding:70px 0 34px;
+    position:relative; padding:70px 0 32px;
     background:
-      radial-gradient(circle at 15% 20%, rgba(255,45,147,0.22), transparent 45%),
-      radial-gradient(circle at 85% 0%, rgba(140,92,255,0.25), transparent 42%),
-      linear-gradient(180deg, var(--panel), var(--ink) 70%);
-    border-top:2px solid var(--gold);
-    overflow:hidden;
+      radial-gradient(circle at 15% 15%, rgba(255,46,140,0.14), transparent 45%),
+      radial-gradient(circle at 85% 0%, rgba(123,92,255,0.16), transparent 42%),
+      var(--panel);
+    border-top:2px solid var(--yellow);
   }
-  footer .foot-confetti i{
-    position:absolute; display:block; border-radius:3px; opacity:0.7;
-    animation:floatSlow 7s ease-in-out infinite;
-  }
-  .foot-top{
-    display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between;
-    gap:32px; padding-bottom:44px; margin-bottom:36px; border-bottom:1px dashed var(--hair);
-    position:relative; z-index:2;
-  }
+  .foot-top{ display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:28px; padding-bottom:40px; margin-bottom:34px; border-bottom:1px dashed var(--hair); }
   .foot-brand{ display:flex; align-items:center; gap:14px; }
-  .foot-brand img{ height:52px; width:52px; border-radius:12px; object-fit:cover; border:2px solid var(--gold); }
-  .foot-brand .name{ font-family:'Bricolage Grotesque'; font-weight:800; font-size:22px; }
-  .foot-brand .tag{ font-size:12.5px; color:var(--muted); margin-top:2px; }
-  .foot-cta{
-    display:inline-flex; align-items:center; gap:10px; padding:14px 24px; border-radius:100px;
-    background:linear-gradient(90deg, var(--ember), var(--pink));
-    color:var(--cream); font-weight:700; font-size:14px;
-    box-shadow:0 10px 28px -8px rgba(255,45,147,0.55);
-    transition:transform .25s ease;
-  }
-  .foot-cta:hover{ transform:translateY(-2px) scale(1.03); }
-  .foot-cta svg{ width:16px; height:16px; }
-
-  .foot-cols{
-    display:grid; grid-template-columns:repeat(3, 1fr); gap:32px;
-    position:relative; z-index:2;
-  }
-  .foot-col .foot-label{ font-size:11.5px; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); font-weight:700; margin-bottom:14px; }
-  .foot-col a, .foot-col span.plain{ display:block; font-size:14.5px; color:var(--muted); margin-bottom:10px; }
-  .foot-col a:hover{ color:var(--lime); }
+  .foot-brand img{ height:48px; width:48px; border-radius:11px; object-fit:cover; border:2px solid var(--yellow); }
+  .foot-brand .name{ font-family:'Bricolage Grotesque'; font-weight:800; font-size:20px; }
+  .foot-brand .tag{ font-size:12px; color:var(--muted); margin-top:2px; }
+  .foot-cta{ display:inline-flex; align-items:center; gap:9px; padding:13px 22px; border-radius:100px; background:var(--yellow); color:#000; font-weight:800; font-size:13.5px; transition:transform .2s ease; }
+  .foot-cta:hover{ transform:translateY(-2px); }
+  .foot-cols{ display:grid; grid-template-columns:repeat(3,1fr); gap:30px; }
+  .foot-col .foot-label{ font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--yellow); font-weight:700; margin-bottom:12px; }
+  .foot-col a, .foot-col span.plain{ display:block; font-size:14px; color:var(--muted); margin-bottom:9px; }
+  .foot-col a:hover{ color:var(--pink); }
   .foot-tags{ display:flex; flex-wrap:wrap; gap:8px; }
-  .foot-tags span{ font-size:11px; font-weight:700; color:var(--ink); background:var(--gold); padding:6px 12px; border-radius:100px; }
-  .foot-tags span:nth-child(2n){ background:var(--pink); color:var(--cream); }
-  .foot-tags span:nth-child(3n){ background:var(--lime); }
-
-  .foot-bottom{
-    display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:14px;
-    margin-top:48px; padding-top:24px; border-top:1px dashed var(--hair);
-    font-size:12.5px; color:var(--muted); position:relative; z-index:2;
-  }
-  .foot-bottom .made{ display:flex; align-items:center; gap:6px; }
-  .heart{ color:var(--ember); animation:pulse 1.8s ease-in-out infinite; }
-
-  @media (max-width:760px){
-    .foot-cols{ grid-template-columns:1fr; gap:26px; }
-    .foot-top{ flex-direction:column; align-items:flex-start; }
-  }
-</style>
-</head>
+  .foot-tags span{ font-size:10.5px; font-weight:700; color:#000; background:var(--yellow); padding:6px 11px; border-radius:100px; }
+  .foot-tags span:nth-child(2n){ background:var(--pink); color:#fff; }
+  .foot-tags span:nth-child(3n){ background:var(--violet); color:#fff; }
+  .foot-bottom{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:14px; margin-top:44px; padding-top:22px; border-top:1px dashed var(--hair); font-size:12px; color:var(--muted); }
+  .heart{ color:var(--pink); animation:pulse 1.8s ease-in-out infinite; }
+  @media (max-width:760px){ .foot-cols{ grid-template-columns:1fr; gap:24px; } .foot-top{ flex-direction:column; align-items:flex-start; } }
+              </style>
+  </head>
 <body>
 
 <header>
-  <div class="logo-mark" ><img src="Logo.jpg" alt="MAMG logo"></div>
+  <div class="logo-mark"><img src="Logo.jpg" alt="MAMG logo"></div>
   <nav class="nav-links">
-    <span class="hide-mobile">Me &amp; My Guys</span>
-    <a href="#bands" style="color: yellow;">The Line-up</a>
-    <a href="https://www.instagram.com/mamg_africa?igsh=MWxhdnQzd3Z0cmppNA%3D%3D&utm_source=qr" target="_blank" class="nav-cta">@mamg_africa</a>
+    <a href="#about" class="hide-mobile">About</a>
+    <a href="#experience" class="hide-mobile">Line-up</a>
+    <a href="#cosign" style="color: yellow; margin-right:20px;">Cosign</a>
+    <a href="https://www.instagram.com/mamg_africa?igsh=MWxhdnQzd3Z0cmppNA%3D%3D&utm_source=qr" target="_blank" class="hide-mobile">Instagram</a>
+    <a href="https://verivent.com/events/me-and-my-guys" target="_blank" class="nav-cta">Free Ticket</a>
   </nav>
 </header>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="rays"></div>
-  <div class="confetti">
-    <i style="top:18%; left:10%; width:14px; height:14px; background:var(--gold); --rot:20deg;"></i>
-    <i style="top:30%; left:22%; width:9px; height:9px; border-radius:50%; background:var(--pink); animation-delay:.6s;"></i>
-    <i style="top:70%; left:8%; width:12px; height:12px; background:var(--violet); --rot:45deg; animation-delay:1.2s;"></i>
-    <i style="top:14%; right:16%; width:10px; height:10px; border-radius:50%; background:var(--lime); animation-delay:.3s;"></i>
-    <i style="top:66%; right:10%; width:16px; height:16px; background:var(--ember); --rot:-15deg; animation-delay:1.6s;"></i>
-    <i style="top:82%; left:40%; width:8px; height:8px; border-radius:50%; background:var(--gold); animation-delay:2s;"></i>
-    <i style="top:8%; left:46%; width:10px; height:10px; background:var(--pink); --rot:30deg; animation-delay:.9s;"></i>
-  </div>
-
-  <span class="sticker gold side-sticker s1">Bring your crew</span>
-  <span class="sticker pink side-sticker s2">Sept 2026</span>
-  <span class="sticker violet side-sticker s3">New city unlocked</span>
-
+  <div class="spotlight"></div>
+  <div class="grain"></div>
   <div class="wrap hero-inner">
-    <div class="logo-hero">
-      <div class="logo-hero-badge">
-        <img src="Logo.jpg" alt="MAMG — Me And My Guys logo">
-      </div>
-      <span class="sticker lime">Debut!</span>
+        <div class="mamg-lockup">
+      <span class="mamg-presents">Me And My Guys presents</span>
+      <div class="mamg-big">MAMG</div>
+      <span class="ribbon">Live in Calabar</span>
     </div>
-
-    <div class="hero-flag">
-      <div class="bars"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
-      <span class="eyebrow">Me And My Guys presents</span>
-    </div>
-    <h1>Calabar,<br>the wait is <span class="pop">over.</span></h1>
-    <p class="hero-sub">Not just another party. Not just another event. A movement built for friendship, culture, music, fashion, entertainment and unforgettable experiences — landing in Calabar for the first time.</p>
+    <h1><span class="l1">Calabar,</span><span class="l2">the wait is over.</span></h1>
+    <p class="hero-sub">Not just another party. Not just another event. A movement built for friendship, culture, music, fashion, entertainment and unforgettable experiences — MAMG is officially stepping into Calabar.</p>
 
     <div class="hero-meta">
-      <div class="date-badge">
-        <span class="d1">DEBUT DATE</span>
-        <span class="d2">September 2026</span>
-      </div>
-      <a class="btn-ig" href="https://www.instagram.com/mamg_africa?igsh=MWxhdnQzd3Z0cmppNA%3D%3D&utm_source=qr" target="_blank">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1"/></svg>
-        Follow the takeover
+      <a class="ticket-btn" href="https://verivent.com/events/me-and-my-guys" target="_blank">
+        Get your ticket <span class="price">free</span>
+      </a>
+      <a class="ig-link" href="https://www.instagram.com/mamg_africa?igsh=MWxhdnQzd3Z0cmppNA%3D%3D&utm_source=qr" target="_blank" >
+        <div class="logo-mark"><img src="Insta.jpeg" alt="MAMG logo" width:36 height:36></div>
+        <span style="background:linear-gradient(90deg, var(--yellow), var(--pink)); -webkit-background-clip:text; background-clip:text; color:transparent; font-size:1em;">@mamg_africa</span>
       </a>
     </div>
 
-    <div class="hero-loc">Cross River · The Nation's Paradise</div>
+    <div class="date-strip">
+      <div class="item"><div class="k">Debut date</div><div class="v">September 2026</div></div>
+      <div class="item"><div class="k">Location</div><div class="v">Calabar, Cross River</div></div>
+      <div class="item"><div class="k">Entry</div><div class="v">Free — Register on Verivent</div></div>
+    </div>
+  </div>
+
+  <div class="scroll-cue">
+    Scroll
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
   </div>
 </section>
 
-<!-- MARQUEE -->
-<div class="marquee">
-  <div class="marquee-track">
-    <span>Bring your crew <em>·</em> Calabar <em>·</em> September 2026 <em>·</em> The takeover begins <em>·</em> MAMG debut <em>·</em></span>
-    <span>Bring your crew <em>·</em> Calabar <em>·</em> September 2026 <em>·</em> The takeover begins <em>·</em> MAMG debut <em>·</em></span>
+<!-- GHOST MARQUEE -->
+<div class="ghost-marquee">
+  <div class="ghost-track">
+    <span>ABOUT US &nbsp; ABOUT US &nbsp; ABOUT US &nbsp; ABOUT US &nbsp;</span>
+    <span>ABOUT US &nbsp; ABOUT US &nbsp; ABOUT US &nbsp; ABOUT US &nbsp;</span>
   </div>
 </div>
 
@@ -410,30 +376,124 @@
   <div class="wrap">
     <div class="about-grid">
       <div class="about-copy">
-        <span class="eyebrow">What is M&amp;MG?</span>
+        <span class="eyebrow">What is MAMG?</span>
         <h2 style="margin-top:14px; font-size:clamp(28px,4vw,42px);">A pop-up carnival, built one city at a time.</h2>
-        <p style="margin-top:24px;"><strong>Me &amp; My Guys</strong> is a pop-up nightlife and culture brand that hosts "bring your crew" parties across Nigerian cities. The brand is the host — <strong>you and yours</strong> are the reason it works.</p>
+        <p style="margin-top:24px;"><strong>Me And My Guys</strong> is a pop-up nightlife and culture brand that hosts "bring your crew" parties across Nigerian cities. The brand is the host — you and yours are the reason it works.</p>
         <p>Every activation carries its own theme, its own vibe, its own city. This time, ladies and gentlemen, behold <strong>Calabar.</strong></p>
         <p>History isn't about to be witnessed. It's about to be created.</p>
       </div>
-      <div class="video-frame">
-        <video src="Video.mp4" autoplay muted loop playsinline></video>
-        <div class="video-tag"><span class="rec-dot"></span> From the crew</div>
+      <div class="collage">
+        <figure class="c1"><img src="Icon.jpg" alt="The MAMG community"></figure>
+        <figure class="c2"><video src="Video.mp4" autoplay muted loop playsinline></video></figure>
+        <figure class="c3"><img src="Community.jpg" alt="MAMG Calabar debut poster"></figure>
       </div>
     </div>
   </div>
 </section>
 
+<!-- STATS -->
+<section class="stats">
+  <div class="wrap stats-row">
+    <div class="stat"><div class="num">5</div><div class="lbl">Pillars of the night</div></div>
+    <div class="stat"><div class="num">1ST</div><div class="lbl">Time MAMG hits Calabar</div></div>
+    <div class="stat"><div class="num">Free</div><div class="lbl">Entry — register to attend</div></div>
+  </div>
+</section>
 
+<!-- GHOST MARQUEE 2 -->
+<div class="ghost-marquee">
+  <div class="ghost-track">
+    <span>THE LINE-UP &nbsp; THE LINE-UP &nbsp; THE LINE-UP &nbsp; THE LINE-UP &nbsp;</span>
+    <span>THE LINE-UP &nbsp; THE LINE-UP &nbsp; THE LINE-UP &nbsp; THE LINE-UP &nbsp;</span>
+  </div>
+</div>
 
-<!-- CREATOR / COSIGN -->
-<section class="cosign" id="cosign">
-  <div class="wrap" style="position:relative;">
-    <span class="sticker violet">Cosign</span>
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">Straight from the culture</span>
-      <h2>The internet is<br>already talking.</h2>
-      <p style="margin-left:auto; margin-right:auto;">One of Nigeria's biggest creators is already putting the city on notice. Hit play and hear it straight from them.</p>
+      <span class="eyebrow">What's waiting for you</span>
+      <h2>Five bands.<br>One carnival.</h2>
+      <p>Calabar's streets have always moved in bands — troupes, colours, and crews taking their turn under the lights. MAMG's Calabar debut is built on five.</p>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-media"><img src="Community.jpg" alt="Friends together at MAMG"></div>
+      <div>
+        <div class="exp-num">01 / FRIENDSHIP</div>
+        <h3 class="exp-title">Bring your whole crew</h3>
+        <ul class="exp-list">
+          <li>This is a "bring your crew" affair, not a solo mission</li>
+          <li>New friends every debut, old ones by your side</li>
+          <li>Community first, always</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-media"><img src="Icon.jpg" alt="MAMG Calabar culture"></div>
+      <div>
+        <div class="exp-num">02 / CULTURE</div>
+        <h3 class="exp-title">Rooted in Calabar</h3>
+        <ul class="exp-list">
+          <li>Built on Calabar's own carnival spirit</li>
+          <li>Cross River — the Nation's Paradise</li>
+          <li>History isn't witnessed here, it's created</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-media"><img src="Music.jpg" alt="Music at MAMG"></div>
+      <div>
+      <div>
+        <div class="exp-num">03 / MUSIC</div>
+        <h3 class="exp-title">Sound that carries the night</h3>
+        <ul class="exp-list">
+          <li>Full sound system, built for a crowd that came to move</li>
+          <li>Sets that build from first song to last</li>
+          <li>Live energy, no filler</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+     <div class="exp-media"><img src="Fashion.jpg" alt="Fashion at MAMG"></div>
+      <div>
+      <div>
+        <div class="exp-num">04 / FASHION</div>
+        <h3 class="exp-title">Dress like it's the debut</h3>
+        <ul class="exp-list">
+          <li>Because it is</li>
+          <li>Street style, front and centre</li>
+          <li>Fit checks strongly encouraged</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+     <div class="exp-media"><img src="Entertainment.jpg" alt="Entertainment at MAMG"></div>
+      <div>
+      <div>
+        <div class="exp-num">05 / ENTERTAINMENT</div>
+        <h3 class="exp-title">Made for the timeline</h3>
+        <ul class="exp-list">
+          <li>Experiences built to be remembered</li>
+          <li>Surprises all night long</li>
+          <li>The story you'll tell for the rest of the year</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COSIGN -->
+<section class="cosign" id="cosign">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="sticker violet">Cosign</span>
+      <h2 style="margin-top:16px;">The internet is<br>already talking.</h2>
+      <p style="margin-left:auto; margin-right:auto;">One of Nigeria's most well-known content creators is already putting Calabar on notice. Hit play and hear it straight from them.</p>
     </div>
     <div class="phone-frame">
       <div class="screen">
@@ -444,32 +504,15 @@
   </div>
 </section>
 
-<!-- BANDS -->
-<section class="bands" id="bands">
+<!-- TICKET CTA -->
+<section class="ticket-cta">
   <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">The line-up</span>
-      <h2>Five bands.<br>One carnival.</h2>
-      <p>Calabar's streets have always moved in bands — troupes, colours, and crews taking their turn under the lights. MAMG's Calabar debut is built on five.</p>
-    </div>
-    <div class="band-list">
-      <div class="band-row"><span class="band-num">01</span><span class="band-name">Friendship</span><span class="band-desc">This is a "bring your crew" affair, not a solo mission. Come with your people — the whole point is who's standing next to you.</span></div>
-      <div class="band-row"><span class="band-num">02</span><span class="band-name">Culture</span><span class="band-desc">Rooted in Calabar's own carnival spirit — the Nation's Paradise, home of the biggest street party on the continent.</span></div>
-      <div class="band-row"><span class="band-num">03</span><span class="band-name">Music</span><span class="band-desc">Sound that carries the night — from the first set to the last, built for a crowd that came to move.</span></div>
-      <div class="band-row"><span class="band-num">04</span><span class="band-name">Fashion</span><span class="band-desc">Dress like it's the debut — because it is. This is a crowd that treats the fit as part of the show.</span></div>
-      <div class="band-row"><span class="band-num">05</span><span class="band-name">Entertainment</span><span class="band-desc">Experiences built for the timeline — the kind of night that becomes the story you tell for the rest of the year.</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- POSTER SHOWCASE -->
-<section class="poster-section">
-  <div class="wrap" style="position:relative;">
-    <span class="sticker gold">Official poster</span>
-    <div class="poster-shell">
-      <img src="Icon.jpg" alt="MAMG — Me and My Guys, Live in Calabar, official debut poster">
-    </div>
-    <p class="poster-caption">The official debut poster — Calabar, September 2026</p>
+    <span class="eyebrow">No cost to be part of history</span>
+    <h2 style="margin-top:16px;">Tickets are <span class="accent-serif">free.</span></h2>
+    <p>Register your spot on Verivent — it costs nothing, but Calabar's debut night will only fit so many. Grab your crew and lock it in.</p>
+    <a class="ticket-btn" href="https://verivent.com/events/me-and-my-guys" target="_blank">
+      Get your free ticket <span class="price">→</span>
+    </a>
   </div>
 </section>
 
@@ -496,31 +539,8 @@
   </div>
 </section>
 
-<!-- CLOSING -->
-<section class="closing">
-  <div class="wrap">
-    <span class="eyebrow">September 2026</span>
-    <h2 style="margin-top:18px;">Calabar, are<br>you <span class="accent-serif">ready?</span></h2>
-    <p class="hero-sub">This is the debut. This is the takeover. This is MAMG.</p>
-    <a class="btn-ig" href="https://www.instagram.com/mamg_africa?igsh=MWxhdnQzd3Z0cmppNA%3D%3D&utm_source=qr" target="_blank">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1"/></svg>
-      Follow @mamg_africa
-    </a>
-    <div class="tags">
-      <span>#MAMG</span><span>#MAMGDebut</span><span>#Calabar</span><span>#CalabarEvents</span><span>#SeptemberToRemember</span><span>#CreativeCulture</span><span>#TheTakeoverBegins</span>
-    </div>
-  </div>
-</section>
-
 <footer>
-  <div class="foot-confetti">
-    <i style="top:12%; left:6%; width:12px; height:12px; background:var(--gold); --rot:20deg;"></i>
-    <i style="top:70%; left:14%; width:8px; height:8px; border-radius:50%; background:var(--pink); animation-delay:.5s;"></i>
-    <i style="top:20%; right:10%; width:10px; height:10px; border-radius:50%; background:var(--lime); animation-delay:1s;"></i>
-    <i style="top:60%; right:20%; width:14px; height:14px; background:var(--violet); --rot:-12deg; animation-delay:1.5s;"></i>
-  </div>
   <div class="wrap">
-
     <div class="foot-top">
       <div class="foot-brand">
         <img src="Logo.jpg" alt="MAMG logo">
@@ -529,21 +549,21 @@
           <div class="tag">Me And My Guys — bring your crew.</div>
         </div>
       </div>
-  
+      <a class="foot-cta" href="https://verivent.com/events/me-and-my-guys" target="_blank">Get your free ticket</a>
     </div>
 
     <div class="foot-cols">
       <div class="foot-col">
         <div class="foot-label">Explore</div>
         <a href="#about">What is M&amp;MG</a>
+        <a href="#experience">The Line-up</a>
         <a href="#cosign">Cosign</a>
-        <a href="#bands">The Line-up</a>
         <a href="#community">Community</a>
       </div>
       <div class="foot-col">
         <div class="foot-label">Get in touch</div>
         <span class="plain">Enquiry / sponsorship &amp; partnership</span>
-        <a href="tel:+2349044355752" style="color: yellow">click me +234 904 435 5752</a>
+        <a href="tel:+2349044355752"  style="color: yellow; animation:bounce 1.8s ease-in-out infinite;">+234 904 435 5752</a>
         <a href="https://www.instagram.com/mamg_africa?igsh=MWxhdnQzd3Z0cmppNA%3D%3D&utm_source=qr" target="_blank">Instagram ↗</a>
       </div>
       <div class="foot-col">
@@ -556,11 +576,10 @@
 
     <div class="foot-bottom">
       <span>© 2026 MAMG — Me And My Guys. All rights reserved.</span>
-      <span class="made">Made for the culture <span class="heart">♥🤯</span></span>
+      <span style="display:flex; align-items:center; gap:6px;">Made for the culture <span class="heart">♥</span></span>
     </div>
-
   </div>
 </footer>
 
 </body>
-</html>
+    </html>
