@@ -86,19 +86,12 @@
 })();
 
 
-/* ============================================================
-   MERCH + CART  (edit the two settings below)
-   ============================================================ */
+/*   MERCH + CART. */
 (function(){
-  /* 1) The admin WhatsApp number. Country code, no "+" and no leading 0.
-        09044355752  ->  2349044355752 */
+
   var WHATSAPP_NUMBER = '2349044355752';
 
-  /* 2) Your products. To add one, copy a block and change it.
-        - category: 'caps' or 'shirts' (matches the filter chips)
-        - price: in Naira, numbers only
-        - image: put the photo in images/merch/ with this exact file name
-        - options: sizes etc. Set to null if the item has no choices. */
+
   var PRODUCTS = [
     {
       id: 'cap', category: 'caps', name: 'MAMG Cap', price: 12000,
@@ -114,7 +107,7 @@
     }*/
   ];
 
-  /* ---------------- no need to edit below this line ---------------- */
+  
   var STORAGE_KEY = 'mamg_cart_v1', NAME_KEY = 'mamg_cart_name';
   var CAT_LABEL = { caps: 'Cap', shirts: 'Shirt' };
   var $ = function(id){ return document.getElementById(id); };
